@@ -10,7 +10,6 @@
 //   0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 //
 // Write a C++ program with TWO parts, each implemented as a function.
-//
 // -----------------------------------------------------------------------------
 // PART A — Print the First N Terms
 // -----------------------------------------------------------------------------
@@ -50,4 +49,69 @@
 
 #include <iostream>
 using namespace std;
+
+// PART A : Print the first N terms of the Fibonacci sequence
+void printFibonacci(int n) {
+    int first = 0, second = 1;
+
+    for (int i = 0; i < n; i++) {
+        cout << first << " ";
+
+        int next = first + second;
+        first = second;
+        second = next;
+    }
+    cout << endl;
+}
+
+// PART B : Check if a number belongs to the Fibonacci sequence
+bool isFibonacci(int number) {
+    int first = 0, second = 1;
+
+    // Special case: 0 is always a Fibonacci number
+    if (number == 0) {
+        return true;
+    }
+
+    // Generate Fibonacci numbers using a loop until we reach or pass "number"
+    while (first <= number) {
+        if (first == number) {
+            return true;
+        }
+        int next = first + second;
+        first = second;
+        second = next;
+    }
+
+    return false;
+}
+
+int main() {
+    // PART A
+    int n;
+    cout << "How many terms? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+    } else {
+        cout << "Fibonacci sequence: ";
+        printFibonacci(n);
+    }
+
+    cout << endl;
+
+    // PART B
+    int number;
+    cout << "Enter a number to check: ";
+    cin >> number;
+
+    if (isFibonacci(number)) {
+        cout << number << " is a Fibonacci number." << endl;
+    } else {
+        cout << number << " is NOT a Fibonacci number." << endl;
+    }
+
+    return 0;
+}
 
